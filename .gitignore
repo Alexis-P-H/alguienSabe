@@ -1,0 +1,10 @@
+.idea
+.venv
+.env
+.md
+.idea
+.venv
+*env
+*tutorial-env
+*__pycache__
+*app/__pycache__/*
