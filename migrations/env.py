@@ -5,6 +5,12 @@ from flask import current_app
 
 from alembic import context
 
+from app.user_models import User, Data
+
+from app.app import db
+target_metadata = db.metadata
+
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

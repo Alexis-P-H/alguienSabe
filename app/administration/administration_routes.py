@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify
-from app import db
+from app.app import db
 from app.user_models import User
 
 administration = Blueprint('administration', __name__)

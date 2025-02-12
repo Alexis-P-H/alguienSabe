@@ -2,52 +2,77 @@
 
 {% block head%}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_comentaries.css') }}">
 {% endblock%}
 
 {%block body%}
 <div class="container">
-    <div class="header">
-        <button>🔆</button>
+    <div class="header"></div>
+    <div class="search">
+        <button onclick="alert('hola')"><img src="../static/icons/search-alt-2-svgrepo-com.svg" alt=""></button>
         <input type="text" placeholder="Buscar...">
     </div>
-    <h1 class="title name_empresa" name="nombre_emoresa" id="nombre_empresa">EL MOMPY</h1>
+
+    <h1 class="title name_user" name="name_user" id="name_user"></h1>
+
+    <button class="arrow left arrow-left">◀</button>
+
     <div class="image-container logo">
-        <button class="arrow left arrow-left" >◀</button>
         <div class="carousel">
-            <img src="#" alt="Logo" class="Logo", id="Logo">
+            <img src="#" alt="Logo" class="Logo" , id="Logo">
         </div>
-        <button class="arrow right arrow-right">▶</button>
     </div>
+    <button class="arrow right arrow-right">▶</button>
     <!-- <div class="preview">
         <img src="#" alt="Logo" class="item1", id="item1">
         <img src="#" alt="Logo" class="item2", id="item2">
         <img src="#" alt="Logo" class="item3", id="item3">
     </div> -->
     <div class="details">
+        <div class="statusButton" id="statusButton"></div>
         <div class="datos_usaurio" id="datos_usaurio"></div>
-        <div class="status">
-            <strong>Abierto</strong><span>🟢</span>
-        </div>
     </div>
-    <div class="buttons">
-        <button class="contact">Contactar</button>
+    <div class="buttons" id="buttons">
+        <div class="contact-container"|>
+            <a class="contact" id="contact" target="_blank" href="#">
+                    <img src="../static/icons/whatsapp-whats-app-svgrepo-com.svg" alt="WhatsApp icon">
+                    Contáctanos por WhatsApp
+            </a>
+        </div>
+            
         <button class="info">Más información</button>
     </div>
     <div class="divider"></div>
-    <div class="feedback">
-        <i>👍</i>
-        <i>👎</i>
-    </div>
-    <div class="form">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" placeholder="Tu nombre">
 
-        <label for="phone">Número de celular:</label>
-        <input type="text" id="phone" placeholder="Tu celular">
+    <button class="btn_addComentarie" onclick="toggleFormulario()">Agregar reseña</button>
 
-        <label for="comment">Comentario:</label>
-        <textarea id="comment" rows="4" placeholder="Tu comentario"></textarea>
+    <div class="comentaries-box" id="comentaries-box">
+        <div class="feedback">
+            <i>👍</i>
+            <i>👎</i>
+        </div>
+        <div class="form">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" placeholder="Tu nombre">
+
+            <label for="phone">Número de celular:</label>
+            <input type="text" id="phone" placeholder="Tu celular">
+
+            <label for="comment">Comentario:</label>
+            <textarea id="comment" rows="4" placeholder="Tu comentario"></textarea>
+
+            <div class="form-comentaries">
+                <button type="submit" value="">Enviar</button>
+            </div>
+        </div>
     </div>
 </div>
 <script src="{{ url_for('static', filename='js/home_usersList.js')}}"></script>
+<script src="{{ url_for('static', filename='js/visit_count.js')}}"></script>
+<script>
+    function toggleFormulario() {
+        var form = document.getElementById("comentaries-box");
+        form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
+    }
+</script>
 {%endblock%}

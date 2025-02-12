@@ -29,6 +29,12 @@
             <input type="file" id="image" name="image" accept="image/*" required>
         </div>
         <div class="form-group">
+            <label for="open_time">Hora de apertura:</label>
+            <input type="time" id="open_time" name="open_time" value="{{ date1 }}">
+            <label for="close_time">Hora de cierre:</label>
+            <input type="time" id="close_time" name="close_time" value="{{ date2 }}">
+        </div>
+        <div class="form-group">
             <button type="submit" value="">Enviar</button>
         </div>
     </form>

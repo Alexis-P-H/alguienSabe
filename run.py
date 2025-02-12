@@ -1,4 +1,4 @@
-from app import create_app, db
+from app.app import create_app, db
 # Importa los modelos
 
 app = create_app()
@@ -12,4 +12,4 @@ def create_db():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, port=4000)

@@ -16,13 +16,27 @@ fetch('/users/')
 // Mostrar el usuario actual en el HTML
 function displayUser(index) {
     const user = users[index];
-    document.getElementById('nombre_empresa').innerHTML = `<h1>${user.username}</h1>`;
+    document.getElementById('name_user').innerHTML = user.username;
     document.getElementById('Logo').src = `/static/${user.image_user}`;
     document.getElementById('datos_usaurio').innerHTML = `
-        Direccion: ${user.direction}<br>
-        Slogan: ${user.slogan}<br>
-        Contacto: ${user.contacto}
+        <p><span>Dirección</span>: ${user.direction}</p>
+        <p><span>Slogan:</span> ${user.slogan}</p>
+        <p><span>Contacto:</span> ${user.contacto}</p>
     `;
+    var text = `https://wa.me/${user.contacto}?text=Hola%20vengo%20de%20*¿alguienSabe?*%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios.`;
+    document.getElementById('contact').href = text;
+
+    function updateStatus() {
+        const button_status = document.getElementById("statusButton");
+        if (user.status) { //True or False
+            button_status.innerHTML = "<strong>Abierto</strong><span>🟢</span>";
+        } else {
+            button_status.innerHTML = "<strong>Cerrado</strong><span>🔴</span>";
+        }
+        console.log("Actualizado");
+    }
+    updateStatus();  // Ejecutar al cargar la página
+    setInterval(updateStatus, 18000000); //18mill/s = 5horas
 }
 
 // Cambiar al usuario anterior o siguiente

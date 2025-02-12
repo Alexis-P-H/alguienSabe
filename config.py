@@ -12,9 +12,3 @@ class Config:
 
     # Desactivar las notificaciones de cambios en SQLAlchemy
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-
-class Config_images:
-        # Dirección de la carpeta uploads dónde iran las imagenes
-        UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER') or os.path.join(BASE_DIR, 'app/static/uploads/')
-        
