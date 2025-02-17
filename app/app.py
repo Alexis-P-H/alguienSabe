@@ -5,7 +5,6 @@ from config import Config
 
 # Inicializa la base de datos
 db = SQLAlchemy()
-migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -14,8 +13,6 @@ def create_app():
     # Inicializa la base de datos con la aplicación
     db.init_app(app)
     
-    # Inicializar extensiones
-    migrate.init_app(app, db)
 
     # Registrar Blueprints (si los tienes)
     from app.home.home_route import home
