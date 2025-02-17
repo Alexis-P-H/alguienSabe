@@ -42,4 +42,8 @@ flask db init
 flask db migrate -m "Descripción del cambio"
 flask db upgrade
 
+with app.app_context():
+    db.session.add(nuevo_usuario)
+    db.session.commit()
+
 """
