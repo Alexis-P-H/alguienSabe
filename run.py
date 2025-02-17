@@ -12,4 +12,4 @@ def create_db():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, port=4000)
+    app.run(debug=True, port=4000)
