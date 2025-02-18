@@ -1,4 +1,5 @@
 import datetime
+from app import app
 from flask import Blueprint, render_template, jsonify, request
 from app.app import db
 from app.user_models import User, Data
@@ -32,9 +33,7 @@ def get_all_users():
             'image_user': user.image_user,
             'status' : validSatatus(user.open_time, user.close_time, hora_actual)
         }
-        for user in users
-
-        
+        for user in users        
     ]
     return jsonify(users_list)
 
@@ -56,3 +55,4 @@ def save_user_info():
     db.session.commit()
 
     return jsonify({"message": "Datos almacenados correctamente"}), 200
+
