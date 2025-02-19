@@ -1,9 +1,11 @@
 from flask import Flask
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 
-# Inicializa la base de datos
+# 🔹 Definir la base de datos fuera de create_app()
 db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -11,6 +13,7 @@ def create_app():
 
     # Inicializa la base de datos con la aplicación
     db.init_app(app)
+    migrate.init_app(app, db)
 
     # Registrar Blueprints (si los tienes)
     from app.home.home_route import home

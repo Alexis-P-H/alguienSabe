@@ -1,6 +1,5 @@
 from app.app import db
 from sqlalchemy import func
-
 from sqlalchemy import UniqueConstraint
 
 class User(db.Model):

@@ -13,11 +13,14 @@ def index():
 @home.route('/users/', methods=['GET'])
 def get_all_users():
     users = User.query.all()
-    hora_actual = datetime.datetime.now().time()  # Obtiene la hora actual
-
+    actually_hour = datetime.datetime.now()  # Obtiene la hora actual
+    colombia_hour = actually_hour + datetime.timedelta(hours=3)
+    colombia_hour_format = colombia_hour.time()
+    print("+++++++++++++++++++++",type(colombia_hour_format), colombia_hour_format, "***********************+")
     def validSatatus(open_time, close_time, hora_actual):
         open_time = datetime.datetime.strptime(open_time, "%H:%M").time()
         close_time = datetime.datetime.strptime(close_time, "%H:%M").time()
+        print(f"Horas:.................\n {type(open_time)}{open_time}\n {close_time}")
         if open_time <= hora_actual <= close_time:
             return True
         else:
@@ -31,7 +34,7 @@ def get_all_users():
             'slogan': user.slogan,
             'contacto': user.contacto,
             'image_user': user.image_user,
-            'status' : validSatatus(user.open_time, user.close_time, hora_actual)
+            'status' : validSatatus(user.open_time, user.close_time, colombia_hour_format),
         }
         for user in users        
     ]

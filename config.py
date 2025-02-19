@@ -1,14 +1,9 @@
 import os
-
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+from sqlalchemy import create_engine
 
 class Config:
-    # # Clave secreta para la aplicación
-    # SECRET_KEY = os.environ.get('SECRET_KEY') or 'clave-secreta-predeterminada'
-
-    # URI de la base de datos
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or \
-        'sqlite:///' + os.path.join(BASE_DIR, 'alguienSabe_dataBase.db')
-
-    # Desactivar las notificaciones de cambios en SQLAlchemy
+    # Obtén la cadena de conexión desde una variable de entorno
+    DATABASE_URL = os.getenv("DATABASE_URL")
+    # Conéctate a la base de datos
+    engine = create_engine(DATABASE_URL)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
