@@ -7,6 +7,7 @@ fetch('/users/')
         users = data;
         if (users.length > 0) {
             displayUser(currentUserIndex);
+            sendUserInfo();
         } else {
             alert('No hay usuarios disponibles.');
         }
@@ -16,6 +17,7 @@ fetch('/users/')
 // Mostrar el usuario actual en el HTML
 function displayUser(index) {
     const user = users[index];
+    console.log("Se comienza a mostrar los usuarios en el front")
     document.getElementById('name_user').innerHTML = user.username;
     document.getElementById('Logo').src = `https://alguiensabe-1.onrender.com/image/${user.id}`;
     document.getElementById('datos_usaurio').innerHTML = `

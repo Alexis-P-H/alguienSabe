@@ -46,8 +46,3 @@ async function sendUserInfo() {
         console.error("Error en fetch:", error);
     }
 }
-
-window.onload = function() {
-    sendUserInfo();
-    console.log("La página se ha cargado completamente.");
-};
