@@ -1,5 +1,6 @@
 import logging
 from logging.config import fileConfig
+from multiprocessing import connection
 
 from flask import current_app
 
@@ -49,15 +50,6 @@ target_db = current_app.extensions['migrate'].db
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-
-def run_migrations_online():
-    # ...
-    context.configure(
-        connection=connection,
-        target_metadata=target_metadata,
-        compare_type=True,  # Habilita la comparación de tipos
-        # ...
-    )
 
 
 def get_metadata():
