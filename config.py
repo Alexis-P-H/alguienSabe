@@ -1,9 +1,10 @@
+from dotenv import load_dotenv
 import os
-from sqlalchemy import create_engine
+
+load_dotenv()
 
 class Config:
-    # Obtén la cadena de conexión desde una variable de entorno
-    DATABASE_URL = os.getenv("DATABASE_URL")
-    # Conéctate a la base de datos
-    engine = create_engine(DATABASE_URL)
+    # Carga las variables de entorno desde .env
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
