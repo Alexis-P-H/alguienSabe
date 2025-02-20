@@ -17,7 +17,7 @@ fetch('/users/')
 function displayUser(index) {
     const user = users[index];
     document.getElementById('name_user').innerHTML = user.username;
-    document.getElementById('Logo').src = `/static/${user.image_user}`;
+    document.getElementById('Logo').src = `http://127.0.0.1:5000/image/${user.id}`;
     document.getElementById('datos_usaurio').innerHTML = `
         <p><span>Dirección</span>: ${user.direction}</p>
         <p><span>Slogan:</span> ${user.slogan}</p>

@@ -1,6 +1,7 @@
 import datetime
 from app import app
-from flask import Blueprint, render_template, jsonify, request
+from flask import Blueprint, Response, render_template, jsonify, request
+from sqlalchemy.orm import load_only
 from app.app import db
 from app.user_models import User, Data
 
@@ -33,13 +34,21 @@ def get_all_users():
             'direction': user.direction,
             'slogan': user.slogan,
             'contacto': user.contacto,
-            'image_user': user.image_user,
             'status' : validSatatus(user.open_time, user.close_time, colombia_hour_format),
         }
         for user in users        
     ]
     return jsonify(users_list)
 
+
+@home.route('/image/<int:id>', methods=['GET'])
+def call_image(id):
+    imagen = User.query.options(load_only(User.image_user)).get(id)
+    
+    if not imagen or not imagen.image_user:
+        return "Imagen no encontrada", 404
+
+    return Response(imagen.image_user, mimetype='image/jpeg')  # Cambia el mimetype según el formato de la imagen
 
 @home.route("/save-user-info", methods=["POST", "GET"])
 def save_user_info():

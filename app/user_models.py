@@ -9,7 +9,7 @@ class User(db.Model):
     direction = db.Column(db.String(120), nullable=False)
     slogan = db.Column(db.String(128), nullable=False)
     contacto = db.Column(db.String(40), nullable=False)
-    image_user = db.Column(db.String(250), nullable=False)
+    image_user = db.Column(db.LargeBinary, nullable=True)
     open_time = db.Column(db.String(5), nullable=False)
     close_time = db.Column(db.String(5), nullable=False)
     time_register_user = db.Column(db.DateTime, server_default=func.now())

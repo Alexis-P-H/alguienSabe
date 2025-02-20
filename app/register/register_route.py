@@ -26,21 +26,15 @@ def postData():
     if image:
         filename = secure_filename(image.filename)
         print("Esta es una imagen:", filename)
-        UPLOAD_FOLDER = 'app/static/uploads/'
-        image_path = os.path.join(UPLOAD_FOLDER, filename)
-        #Guarda la imagen en la carpeta de uploads
-        image.save(image_path)
-        # 📌 Generar la ruta relativa para la base de datos
-        db_uri = image_path.replace("app/static/", "")
-    else:
-        image_path = None
+        image_bin = image.read()
+        print("Binario de la imagen", image_bin)
 
     data = User(
         username = name,
         direction = address,
         slogan= slogan,
         contacto= contact,
-        image_user = db_uri,
+        image_user = image_bin,
         open_time = open_tiem,
         close_time = close_time
         )
