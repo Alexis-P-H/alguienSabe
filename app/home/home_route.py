@@ -15,13 +15,11 @@ def index():
 def get_all_users():
     users = User.query.all()
     actually_hour = datetime.datetime.now()  # Obtiene la hora actual
-    colombia_hour = actually_hour + datetime.timedelta(hours=3)
+    colombia_hour = actually_hour - datetime.timedelta(hours=5)
     colombia_hour_format = colombia_hour.time()
-    print("+++++++++++++++++++++",type(colombia_hour_format), colombia_hour_format, "***********************+")
     def validSatatus(open_time, close_time, hora_actual):
         open_time = datetime.datetime.strptime(open_time, "%H:%M").time()
         close_time = datetime.datetime.strptime(close_time, "%H:%M").time()
-        print(f"Horas:.................\n {type(open_time)}{open_time}\n {close_time}")
         if open_time <= hora_actual <= close_time:
             return True
         else:
@@ -44,7 +42,7 @@ def get_all_users():
 @home.route('/image/<int:id>', methods=['GET'])
 def call_image(id):
     imagen = User.query.options(load_only(User.image_user)).get(id)
-    
+
     if not imagen or not imagen.image_user:
         return "Imagen no encontrada", 404
 
@@ -53,8 +51,6 @@ def call_image(id):
 @home.route("/save-user-info", methods=["POST", "GET"])
 def save_user_info():
     data = request.json
-    print("Datos recibidos:", data)  # Solo para verificar en la consola
-
     data_db = Data(
         number_visit=request.json['numberVisit'],
         userAgent=request.json['userAgent'],
