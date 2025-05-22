@@ -6,10 +6,11 @@
 {%block body%}
 <div class="container">
     <div class="header"></div>
-    <div class="search">
-        <button onclick="alert('hola')"><img src="../static/icons/search-alt-2-svgrepo-com.svg" alt=""></button>
+    <!-- <div class="search">
+        <button onclick="alert('Esta función no está lista')"><img src="../static/icons/search-alt-2-svgrepo-com.svg"
+                alt="Buscador"></button>
         <input type="text" placeholder="Buscar...">
-    </div>
+    </div> -->
 
     <h1 class="title name_user" name="name_user" id="name_user"></h1>
 
@@ -31,18 +32,18 @@
         <div class="datos_usaurio" id="datos_usaurio"></div>
     </div>
     <div class="buttons" id="buttons">
-        <div class="contact-container"|>
+        <div class="contact-container" |>
             <a class="contact" id="contact" target="_blank" href="#">
-                    <img src="../static/icons/whatsapp-whats-app-svgrepo-com.svg" alt="WhatsApp icon">
-                    Contáctanos por WhatsApp
+                <img src="../static/icons/whatsapp-whats-app-svgrepo-com.svg" alt="WhatsApp icon">
+                Contáctanos por WhatsApp
             </a>
         </div>
-            
-        <button class="info">Más información</button>
+
+        <!-- <button class="info">Más información</button> -->
     </div>
     <div class="divider"></div>
 
-    <button class="btn_addComentarie" onclick="toggleFormulario()">Agregar reseña</button>
+    <!-- <button class="btn_addComentarie" onclick="toggleFormulario()">Agregar reseña</button> -->
 
     <div class="comentaries-box" id="comentaries-box">
         <div class="feedback">
@@ -64,6 +65,15 @@
             </div>
         </div>
     </div>
+    <div>
+        Publicidad local.
+    </div>
+    <div style="position: absolute; left: 90%;">
+        <h6>
+            v1.0
+        </h6>
+    </div>
+
 </div>
 <script src="{{ url_for('static', filename='js/home_usersList.js')}}"></script>
 <script src="{{ url_for('static', filename='js/visit_count.js')}}"></script>

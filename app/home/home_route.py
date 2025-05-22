@@ -1,9 +1,10 @@
 import datetime
 from app import app
-from flask import Blueprint, Response, render_template, jsonify, request
+from flask import Blueprint, Response, redirect, render_template, jsonify, request
 from sqlalchemy.orm import load_only
 from app.app import db
 from app.user_models import User, Data
+import base64
 
 home = Blueprint('home', __name__)
 
@@ -13,29 +14,31 @@ def index():
 
 @home.route('/users/', methods=['GET'])
 def get_all_users():
-    users = User.query.all()
+    users = User.query.limit(10).all()
     actually_hour = datetime.datetime.now()  # Obtiene la hora actual
-    colombia_hour = actually_hour - datetime.timedelta(hours=5)
+    colombia_hour = actually_hour #- datetime.timedelta(hours=5)
     colombia_hour_format = colombia_hour.time()
-    def validSatatus(open_time, close_time, hora_actual):
+
+    def validSatatus(open_time, close_time, hora_actual_colombia):
         open_time = datetime.datetime.strptime(open_time, "%H:%M").time()
         close_time = datetime.datetime.strptime(close_time, "%H:%M").time()
-        if open_time <= hora_actual <= close_time:
+        if open_time < hora_actual_colombia < close_time:
             return True
-        else:
-            return False
-        
-    users_list = [
-        {
+        elif open_time > hora_actual_colombia and hora_actual_colombia < close_time:
+            return True
+    
+    users_list = []
+    for user in users:
+        imagen_bs64 = base64.b64encode(user.image_user).decode('utf-8')
+        users_list.append({
             'id': user.id,
             'username': user.username,
             'direction': user.direction,
             'slogan': user.slogan,
             'contacto': user.contacto,
             'status' : validSatatus(user.open_time, user.close_time, colombia_hour_format),
-        }
-        for user in users        
-    ]
+            'image_base64' : f"data:image/png;base64,{imagen_bs64}"
+        })
     return jsonify(users_list)
 
 

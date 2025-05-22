@@ -12,14 +12,14 @@ fetch('/users/')
             alert('No hay usuarios disponibles.');
         }
     })
-    .catch(error => console.error('Error al cargar usuarios:', error));
+    .catch(error => console.error('Error al cargar usuarios:', error), 15000);
 
 // Mostrar el usuario actual en el HTML
 function displayUser(index) {
     const user = users[index];
     console.log("Se comienza a mostrar los usuarios en el front")
     document.getElementById('name_user').innerHTML = user.username;
-    document.getElementById('Logo').src = `https://alguiensabe-1.onrender.com/image/${user.id}`;
+    document.getElementById('Logo').src = `${user.image_base64}`;
     document.getElementById('datos_usaurio').innerHTML = `
         <p><span>Dirección</span>: ${user.direction}</p>
         <p><span>Slogan:</span> ${user.slogan}</p>
@@ -35,7 +35,7 @@ function displayUser(index) {
         } else {
             button_status.innerHTML = "<strong>Cerrado</strong><span>🔴</span>";
         }
-        console.log("Actualizado");
+        console.log("Estado de apertura");
     }
     updateStatus();  // Ejecutar al cargar la página
     setInterval(updateStatus, 18000000); //18mill/s = 5horas
